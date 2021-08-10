@@ -1,0 +1,583 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+.Outer{
+  overflow-x: hidden;
+}
+body{
+  background-color: #D6D5FE !important;
+}
+.heading{
+  display: flex;
+}
+nav{
+ box-shadow: none;
+ padding: none;
+ height: auto;
+}
+.navbar-brand{
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+}
+.navbar-brand img{
+  width: 40%;
+}
+.heading h1{
+  font-family: 'Courgette', cursive;
+  font-size: 70px;
+  position: absolute;
+  top: 50%;
+  left: 24%;
+  margin: auto;
+  color: #7377f0;
+}
+.mystyle img{
+  z-index: 1;
+  margin-top: 50px;
+  position: absolute;
+  left: -2%;
+  -ms-transform: rotate(30deg); /* IE 9 */
+  transform: rotate(30deg);
+}
+.mainbg img{
+  margin: 0px 10%;
+  width: 75%;
+  height: 20%;
+}
+.mainbgLower img{
+  margin: 0px 10%;
+  position: absolute;
+  top: 170%;
+  width: 75%;
+}
+.mychef img{
+  position: absolute;
+  right: 0%;
+  margin-top: 30px;
+  width: 180px;
+  height: 250px;
+  z-index: 1;
+  -ms-transform: rotate(-10deg); /* IE 9 */
+  transform: rotateY(-190deg) !important;
+}
+
+.nav-link{
+  color: white !important;
+  background-color: #a3a1f3;
+  border-radius: 70px;
+  
+}
+.btn{
+  color: white !important;
+  background-color: #a3a1f3 !important;
+  border-radius: 70px !important;
+  
+}
+/* body {
+  background-color: #d6d5fe !important;
+} */
+nav {
+  background-color: #5A189A;
+}
+
+nav ul li  {
+  padding: 0px 15px;
+}
+
+.explore {
+  position: absolute;
+  left: 150px;
+  top: 20px;
+  width: 450px;
+  border-radius: 50px;
+  background-color: #baa3fc;
+}
+.btn:hover,
+.btn-large:hover,
+.btn-small:hover {
+  background-color: #9169ff;
+}
+.searchicon {
+  position: absolute;
+  left: 450px;
+}
+.infoHome{
+  margin: 20% 0% 0% 0%;
+}
+.mylist{
+  padding-left: 5% !important;
+}
+.infoHome .mylist h3{
+  font-family: 'Courgette', cursive;
+}
+.infoHome ul li p {
+  font-size: x-large;
+}
+.para{
+  font-size: x-large;
+  padding-right: 5% !important;
+}
+.rotation{
+  display: flex;
+  height: 100vh;
+  margin-bottom: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.slider{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  0%{
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  100%{
+    transform: perspective(1000px) rotateY(360deg);
+  }
+  
+}
+
+.rotation .slider span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transform : rotateY(calc(var(--i)*45deg)) translateZ(350px)
+
+}
+
+.rotation .slider span img{
+  z-index: 10;
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  transition:2s
+}
+
+.rotation .slider span:hover img{
+  z-index: 10;
+  transform: translateY(-50px) scale(1.2)
+}
+.fa-linkedin{
+  cursor: pointer;
+  color: #0497f8;
+  color: #c5daf5;
+  text-shadow: 0 0 10px rgb(0, 183, 255);
+}
+
+.fa-instagram-square{
+  cursor: pointer;
+  color: #ff10c3;
+  color: #efc5f5;
+  text-shadow: 0 0 10px rgb(247, 8, 8);
+}
+
+.fa-facebook-square{
+  cursor: pointer;
+  color: #0562ec;
+  color: #679afa;
+  text-shadow: 0 0 10px rgb(7, 43, 145);
+}
+
+.fa-twitter-square{
+  cursor: pointer;
+  color: #0497f8;
+  color: #c5def5;
+  text-shadow: 0 0 10px rgb(3, 108, 156);
+}
+.textbox{
+   width: 60%;
+}
+i:hover{ 
+  transform: translateY(-10px) scale(1.2)
+}
+footer{
+  margin-bottom: 0;
+  color: white;
+  background-color: rgba(90, 24, 154,0.1);
+}
+footer h5{
+  font-family: 'Courgette', cursive;
+}
+#wave{
+  transform: rotate(0deg);
+  transition:0.3s 
+}
+
+@media screen and (min-width: 431px) and (max-width: 630px) {
+  .heading h1{
+    font-family: 'Courgette', cursive;
+    font-size: 50px;
+    position: absolute;
+    left:25%;
+    margin: auto;
+    color: #7377f0;
+  }
+  .mystyle img{
+    z-index: 1;
+    margin-top: 50px;
+    width: 150px;
+    height: 160px;
+    position: absolute;
+    left: -2%;
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+  .mainbg img{
+    margin: 0px 10%;
+    width: 75%;
+    height: 20%;
+  }
+  .mainbgLower img{
+    margin: 0px 10%;
+    position: absolute;
+    top:90%;
+    width: 75%;
+  }
+  .mychef img{
+    position: absolute;
+    right: 0%;
+    margin-top: 30px;
+    width:110px;
+    height: 150px;
+    z-index: 1;
+    -ms-transform: rotate(-10deg);
+    transform: rotateY(-190deg) !important;
+  }
+  .infoHome{
+    margin: 30% 0% 0% 0%;
+  }
+  /* .row .col.s6{
+    width: 100%;
+    margin: none;
+    left: none;
+    right: none;
+  }
+  .infoHome .mylist{
+    padding: 5px 60px 0px 60px !important;
+    width:100%;
+    max-width: 100%;
+  }
+  .infoHome .para {
+    font-size: 15px;
+    width:100%;
+    max-width: 100%;
+  }
+  .infoHome .para p{
+    padding: 5px 20px
+  }
+  .infoHome ul li p {
+    font-size: 15px;
+  }
+  .infoHome .mylist ul{
+    padding: 0px 40px;
+  }
+  .infoHome .mylist h3{
+    font-family: 'Courgette', cursive;
+    font-size: 30px !important; 
+  } */
+  .rotation{
+    display: flex;
+    height: 300px;
+    width: 100%;
+    margin-bottom: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .slider{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    animation: rotate 30s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0%{
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    100%{
+      transform: perspective(1000px) rotateY(360deg);
+    }
+    
+  }
+  
+  .rotation .slider span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform : rotateY(calc(var(--i)*45deg)) translateZ(100px)
+  
+  }
+  
+  .rotation .slider span img{
+    z-index: 10;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    transition:2s
+  }
+  
+  .rotation .slider span:hover img{
+    z-index: 10;
+    transform: translateY(-20px) scale(1.2)
+  }
+}
+
+
+@media screen and (min-width: 631px) and (max-width: 1050px) {
+  .heading h1{
+    font-family: 'Courgette', cursive;
+    font-size: 50px;
+    position: absolute;
+    left:25%;
+    margin: auto;
+    color: #7377f0;
+  }
+  .mystyle img{
+    z-index: 1;
+    margin-top: 50px;
+    width: 150px;
+    height: 160px;
+    position: absolute;
+    left: -2%;
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+  .mainbg img{
+    margin: 0px 10%;
+    width: 75%;
+    height: 20%;
+  }
+  .mainbgLower img{
+    margin: 0px 10%;
+    position: absolute;
+    top:100%;
+    width: 75%;
+  }
+  .mychef img{
+    position: absolute;
+    right: 0%;
+    margin-top: 30px;
+    width:110px;
+    height: 150px;
+    z-index: 1;
+    -ms-transform: rotate(-10deg);
+    transform: rotateY(-190deg) !important;
+  }
+  .infoHome{
+    margin: 30% 0% 0% 0%;
+  }
+  
+  .rotation{
+    display: flex;
+    height: 300px;
+    width: 100%;
+    margin-bottom: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .slider{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    animation: rotate 30s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0%{
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    100%{
+      transform: perspective(1000px) rotateY(360deg);
+    }
+    
+  }
+  
+  .rotation .slider span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform : rotateY(calc(var(--i)*45deg)) translateZ(100px)
+  
+  }
+  
+  .rotation .slider span img{
+    z-index: 10;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    transition:2s
+  }
+  
+  .rotation .slider span:hover img{
+    z-index: 10;
+    transform: translateY(-20px) scale(1.2)
+  }
+}
+
+@media screen and (max-width: 450px) {
+  nav ul li  {
+    margin: 5px 50% 0px 1% !important;
+  }
+  nav ul li a{
+    padding: 5% !important;
+  }
+  .heading h1{
+    font-family: 'Courgette', cursive;
+    font-size: 30px;
+    position: absolute;
+    left: 24%;
+    margin: auto;
+    color: #7377f0;
+  }
+  .mystyle img{
+    z-index: 1;
+    margin-top: 50px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: -2%;
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+  .mainbg img{
+    margin: 0px 10%;
+    width: 75%;
+    height: 20%;
+  }
+  .mainbgLower img{
+    margin: 0px 10%;
+    position: absolute;
+    top: 60%;
+    width: 75%;
+  }
+  .mychef img{
+    position: absolute;
+    right: 0%;
+    margin-top: 30px;
+    width: 70px;
+    height: 100px;
+    z-index: 1;
+    -ms-transform: rotate(-10deg);
+    transform: rotateY(-190deg) !important;
+  }
+  .infoHome{
+    display: grid !important;
+  }
+  .row .col.s6{
+    width: 100%;
+    margin: none;
+    left: none;
+    right: none;
+  }
+  .infoHome .mylist{
+    padding: 5px 20px;
+    width:100%;
+    max-width: 100%;
+  }
+  .infoHome .para {
+    font-size: 15px;
+    width:100%;
+    max-width: 100%;
+  }
+  .infoHome .para p{
+    padding: 5px 20px
+  }
+  .infoHome ul li p {
+    font-size: 15px;
+  }
+  .infoHome .mylist ul{
+    padding: 0px 40px;
+  }
+  .infoHome .mylist h3{
+    font-family: 'Courgette', cursive;
+    font-size: 30px !important; 
+  }
+  .navbar-collapse{
+    background-color: #5A189A;
+    z-index: 30
+  }
+  .navbar-toggler{
+    background-color: #baa3fc !important;
+    color: #5A189A;
+  } 
+  .rotation{
+    display: flex;
+    height: 200px;
+    width: 100%;
+    margin-bottom: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .slider{
+    position: relative;
+    width: 50px;
+    height: 100px;
+    transform-style: preserve-3d;
+    animation: rotate 30s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0%{
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    100%{
+      transform: perspective(1000px) rotateY(360deg);
+    }
+    
+  }
+  
+  .rotation .slider span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform : rotateY(calc(var(--i)*45deg)) translateZ(100px)
+  
+  }
+  
+  .rotation .slider span img{
+    z-index: 10;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    transition:2s
+  }
+  
+  .rotation .slider span:hover img{
+    z-index: 10;
+    transform: translateY(-20px) scale(1.2)
+  }
+}

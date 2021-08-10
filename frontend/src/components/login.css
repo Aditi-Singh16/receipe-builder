@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap");
+.form-container {
+  background-image: url("./images/login1.png");
+  background-repeat: no-repeat;
+  background-size: 400px 430px;
+  object-fit: contain;
+  width: 400px;
+  height: 430px;
+  margin: 5% auto;
+  padding: 30px;
+}
+.SignupHeading{
+  font-family: "Dancing Script", cursive;
+  margin: 30px 37% 0px 37%
+}
+.form-btn {
+  background-color: #9169ff;
+  /* color: #e2d3ff; */
+  border-radius: 50px;
+  margin: 60% 20%;
+  width: 200px;
+}
+::-webkit-input-placeholder {
+  color: cornflowerblue;
+}
+@media screen and (max-width:450px) {
+  .SignupHeading{
+    font-family: "Dancing Script", cursive;
+    margin: 10px 15%
+  }
+}

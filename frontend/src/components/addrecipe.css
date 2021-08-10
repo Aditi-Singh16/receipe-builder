@@ -1,0 +1,30 @@
+textarea.materialize-textarea {
+  overflow-y: scroll;
+  height: 50px !important;
+  resize: none;
+}
+.myAddrecipeForm{
+  margin-left: 15% !important;
+  width: 70% !important;
+}
+.myAddrecipeForm .col-6 img{
+  margin-left: 5%;
+  margin-top: 15%;
+  width: 90%;
+}
+
+
+.choosefile{
+  margin: 1% 10% 0% 10% !important;
+}
+@media screen and (max-width: 450px){
+  .myAddrecipeForm{
+    display: grid !important;
+  }
+  .myAddrecipeForm .col-6{
+    width: 100%;
+    max-width: 100%;
+  }
+  
+}
+

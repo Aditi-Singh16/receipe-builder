@@ -1,0 +1,47 @@
+body{
+  overflow-x: hidden;
+}
+.Pic img{
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+.PostedRecipe .row .col-4 .card{
+  padding: 10px 10px 0px 10px;
+  margin: 5% 10% ;
+  width: 80% !important;
+  background-color: #E6CFFD !important;
+  border-radius: 10px !important;
+  box-shadow: 5px 5px 10px 2px #240046 !important;
+}
+.PostedRecipe .row .col-4 .card .mylikes{
+  background-color: #8187DC;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.Pic .profile{
+  width: 20%;
+}
+@media screen and (max-width: 450px){
+  .PostedRecipe{
+    display: grid !important
+  }
+  .Pic .profile{
+    width: 50%;
+  }
+  .PostedRecipe .myrecipes{
+    display: grid;
+  }
+  .PostedRecipe .row .col-4 {
+    width: 100% !important;
+  }
+  .PostedRecipe .row .col-4 .card{
+    padding: 10px 10px 0px 10px;
+    margin: 5% 10% ;
+    width: 80% !important;
+    background-color: #E6CFFD !important;
+    border-radius: 10px !important;
+    box-shadow: 5px 5px 10px 2px #240046 !important;
+  }
+}
+/* style={{ width: "100%", backgroundColor: "#8187DC", borderBottomLeftRadius: "30px", borderBottomRightRadius: "30px", marginBottom: "0%" }} */
