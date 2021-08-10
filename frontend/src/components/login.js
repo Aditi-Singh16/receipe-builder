@@ -27,18 +27,32 @@ function Login() {
             })
         }).then(res => res.json())
             .then(result => {
-                console.log("result after login = ", result);
                 if (result.token) {
                     localStorage.setItem("user", JSON.stringify(result.user));
                     localStorage.setItem("jwt", result.token);
                     dispatch({ type: "USER", payload: result.user })
 
                     history.push('/explore')
-                    toast('Welcome Back!! <3')
+                    toast.success('Welcome back!! <3', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
 
                 } else if (result.error) {
-                    print(result.error)
-                    toast(result.error)
+                    toast.error(result.error, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 }
             })
     }
