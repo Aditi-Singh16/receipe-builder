@@ -76,6 +76,7 @@ function Explore() {
 
     const linksearch = (searchitem) => {
         localStorage.setItem("search", searchitem);
+        localStorage.setItem("linkSearch", true);
     }
     const handlechange = (e) => {
         var val = e.target.value
