@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import validator from 'validator'
+import Login from './login';
 import "./login.css"
 
 function Signup() {
@@ -41,7 +41,8 @@ function Signup() {
 
     const validateEmail = (e) => {
         setemail(e.target.value)
-        if (validator.isEmail(email)) {
+        var validator = require("email-validator");
+        if (validator.validate(email)) {
             setEmailError('Valid Email :)')
         } else {
             setEmailError('Enter valid Email!')
@@ -58,7 +59,6 @@ function Signup() {
                     </div><br></br>
                     <div>
                         <input type="text" className="form-control" placeholder="email" value={email} onChange={(e) => { validateEmail(e) }} />
-                        <br></br>
                         <span style={{ fontWeight: 'bold', color: 'red', }}>{emailError}</span>
                     </div>
 
@@ -70,6 +70,9 @@ function Signup() {
                         <input type="password" className="form-control" placeholder="password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
                     </div>
                     <button style={{ marginTop: "30%" }} onClick={signupuser} className="form-btn btn waves-effect" >Sign up</button>
+                    <div>
+                        <p>Already Have an account?<span><Link to="/login">{Login}</Link></span></p>
+                    </div>
                 </form>
             </div>
         </>

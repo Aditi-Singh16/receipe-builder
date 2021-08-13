@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import logo from './images/logo.png'
 import { UserContext } from '../App'
@@ -11,7 +11,7 @@ import Login from './login'
 import './search.css'
 import HTMLFlipBook from 'react-pageflip';
 import bookCover from './images/bookCover.png'
-import Footer from "./footer";
+import Footer from './components/footer'
 
 const RecipePages = (props) => {
 
@@ -67,9 +67,8 @@ const RecipePages = (props) => {
 
 };
 
+function ViewAll() {
 
-
-function UserSearch() {
     const { state, dispatch } = useContext(UserContext)
     const [allrecipe, setallrecipe] = useState([])
     const [finarr, setfinarr] = useState([])
@@ -88,7 +87,22 @@ function UserSearch() {
     const [showres, setshowres] = useState(false)
 
 
+    useEffect(() => {
+        var searchitem = localStorage.getItem('search')
+        fetch('/searchrecipe', {
+            method: 'get',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+            .then(result => {
+                setallrecipe(result.searchres)
+            }).catch(err => {
+                console.log(err)
+            })
 
+    }, [])
 
     const customStyles = {
         content: {
@@ -116,121 +130,6 @@ function UserSearch() {
     }
     function closeModalTwo() {
         setshowbook(false);
-    }
-
-    useEffect(() => {
-        var searchitem = localStorage.getItem('search')
-        fetch('/searchrecipe', {
-            method: 'get',
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-            }
-        }).then(res => res.json())
-            .then(result => {
-                setallrecipe(result.searchres)
-                var arr = []
-                arr = result.searchres
-                if (localStorage.getItem('linkSearch') == true) {
-                    arr.filter(item => {
-                        if (item.title.toLowerCase().includes(searchitem.toLowerCase())) {
-                            if (!finarr.includes(item)) {
-                                var x = [item]
-                                setfinarr(finarr => [...finarr, x])
-                            }
-                        }
-                    })
-                } else {
-                    arr.filter(item => {
-                        console.log('searchitem lowercase', searchitem)
-                        if (item.title.toLowerCase().includes(searchitem.toLowerCase()) || item.foodtype.toLowerCase().includes(searchitem.toLowerCase()) || item.cuisine_type.toLowerCase().includes(searchitem.toLowerCase()) || item.Ingredients.toLowerCase().includes(searchitem.toLowerCase())) {
-                            if (!finarr.includes(item)) {
-                                var x = [item]
-                                setfinarr(finarr => [...finarr, x])
-                            }
-                        }
-
-                        else if (searchitem.indexOf(' ') >= 0) {
-                            var subarr = []
-                            var splitarr = searchitem.split(' ')
-                            console.log('split arr', splitarr)
-                            console.log('all recipe', result.searchres)
-                            splitarr.forEach(elem => {
-                                console.log(item.title.toLowerCase().includes(elem.toLowerCase()) || item.foodtype.toLowerCase().includes(elem.toLowerCase()) || item.cuisine_type.toLowerCase().includes(elem.toLowerCase()) || item.Ingredients.toLowerCase().includes(elem.toLowerCase()))
-                                if (item.title.toLowerCase().includes(elem.toLowerCase()) || item.foodtype.toLowerCase().includes(elem.toLowerCase()) || item.cuisine_type.toLowerCase().includes(elem.toLowerCase()) || item.Ingredients.toLowerCase().includes(elem.toLowerCase())) {
-                                    console.log('subarr before pushing', subarr)
-                                    if (!subarr.includes(item)) {
-                                        subarr.push(item)
-                                        setfinarr(finarr => [...finarr, subarr])
-                                    }
-                                }
-                            })
-                            console.log('subarr', subarr)
-
-                        }
-                        for (var i = 0; i < finarr.length; i++) {
-                            if (finarr[i].length == 0) {
-                                finarr.splice(i, 1)
-                            }
-                        }
-                    })
-                }
-            }).catch(err => {
-                console.log(err)
-            })
-
-    }, [])
-
-
-    const handleOnChange = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
-            index === position ? !item : item
-        );
-
-        setCheckedState(updatedCheckedState);
-    };
-
-    const submitSearch = () => {
-        localStorage.setItem("search", query);
-        history.push("/usersearch" + query);
-    }
-
-    var arr = []
-
-    const linksearch = (searchitem) => {
-        localStorage.setItem("search", searchitem);
-    }
-    const handlechange = (e) => {
-        var val = e.target.value
-        setquery(val)
-        if (val.length == 0) {
-            searchdiv.current.style.opacity = "0"
-            setshowres(false)
-        } else {
-            searchdiv.current.style.opacity = "1"
-        }
-    }
-
-    function applyfilter() {
-        var foodtypearr = []
-        for (var i = 0; i < finarr.length; i++) {
-            foodtypearr.push(finarr[i][0].foodtype)
-        }
-        console.log(foodtypearr)
-
-        checkedState.filter((item1, index) => {
-            if (item1) {
-                allrecipe.filter(item => {
-                    if (item.foodtype === filters[index]) {
-                        if (!foodtypearr.includes(item.foodtype)) {
-                            var x1 = []
-                            x1.push(item)
-                            setfinarr(finarr => [...finarr, x1])
-                        }
-                    }
-                })
-            }
-        })
     }
 
     const logout = () => {
@@ -327,21 +226,27 @@ function UserSearch() {
             }).catch(err => console.log(err))
     }
 
-    const getItems = () => {
-        console.log('hiiii')
-        console.log(document.getElementsByClassName('recipe'))
-        for (var i = 0; i < items[0].steps.length; i++) {
-            if (items[0].steps.length > 8 * (1 + i)) {
-                document.getElementsByClassName('stf__block')[0].appendChild(
-                    <div className="demoPage page">
-                        <RecipePages props={items} initial={8 * i} count={8 * (1 + i)}></RecipePages>
-                    </div>
-                )
-            }
-        }
+    const submitSearch = () => {
+        localStorage.setItem("search", query);
+        history.push("/usersearch" + query);
     }
 
+    var arr = []
 
+    const linksearch = (searchitem) => {
+        localStorage.setItem("search", searchitem);
+        localStorage.setItem("linkSearch", true);
+    }
+    const handlechange = (e) => {
+        var val = e.target.value
+        setquery(val)
+        if (val.length == 0) {
+            searchdiv.current.style.opacity = "0"
+            setshowres(false)
+        } else {
+            searchdiv.current.style.opacity = "1"
+        }
+    }
 
     if (!state) {
         return (
@@ -384,7 +289,7 @@ function UserSearch() {
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5A189A" fillOpacity="1" d="M0,160L24,144C48,128,96,96,144,112C192,128,240,192,288,202.7C336,213,384,171,432,144C480,117,528,107,576,117.3C624,128,672,160,720,192C768,224,816,256,864,234.7C912,213,960,139,1008,133.3C1056,128,1104,192,1152,213.3C1200,235,1248,213,1296,213.3C1344,213,1392,235,1416,245.3L1440,256L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z"></path></svg>
                 <div className="myform">
                     <form>
-                        <input className="exploreSearch" style={{ border: "none" }} onChange={(e) => handlechange(e)} placeholder="search recipes..." />
+                        <input className="exploreSearch" style={{ border: "none", outline: "none" }} onChange={(e) => handlechange(e)} placeholder="search recipes..." />
                         <input onClick={submitSearch} className="gobtn btn" type="submit" value="Go!" />
                         <div id="scrolldesign" style={{ zIndex: "-1", backgroundColor: "#8187DC", width: "350px", height: "auto", opacity: "0", borderRadius: "5px" }} ref={searchdiv}>
                             <ul>
@@ -428,25 +333,6 @@ function UserSearch() {
                             </ul>
                         </div>
                     </form>
-                </div>
-                <div className="myfilters">
-                    <div className="filterNames">
-                        {filters.map((name, index) => {
-                            return (
-                                <div className="d-inline p-1">
-                                    <p style={{ backgroundColor: "#CBB2FE" }} className="waves-effect homebtn btn">
-                                        <label>
-                                            <input className="form-check-input" type="checkbox" checked={checkedState[index]} onChange={() => handleOnChange(index)} />
-                                            <span style={{ color: "#3C096C" }}>{name}</span>
-                                        </label>
-                                    </p>
-                                </div>
-                            )
-                        })}
-                    </div>
-
-                    <button className="d-block waves-btn homebtn btn" onClick={applyfilter}>Apply</button>
-
                 </div>
                 <div className="AllMyRecipe row">
                     {
@@ -539,106 +425,106 @@ function UserSearch() {
                             :
                             <h1>No results found</h1>
                     }
+                    {
+                        showbook ?
+                            <Modal
+                                className="myRecipeModal"
+                                style={{ height: "100%" }}
+                                isOpen={showbook}
+                                //onAfterOpen={afterOpenModal}
+                                ariaHideApp={false}
+                                onRequestClose={closeModalTwo}
+                                contentLabel="Example Modal"
+                            >
+                                <button className="waves-btn btn homebtn closebtnModal" onClick={closeModalTwo}>close</button>
+                                <HTMLFlipBook className="recipe" width={400} height={500}>
+                                    <div className="demoPage">
+                                        <img src={bookCover} style={{ width: "400px", height: "500px" }}></img>
+                                    </div>
+                                    <div className="demoPage page recipebookImg">
+                                        <img src={items ? items[0].photo : capture} style={{ width: "100%", height: "60%" }} />
+                                        <h5 className="page-header">{items[0].title}</h5>
+                                    </div>
+                                    <div className="demoPage page">
+                                        <h5 className="page-header">Ingredients</h5>
+                                        <ul>
+                                            {
+                                                str1 = items[0].Ingredients.split('\n'),
+                                                str1.map((item) => {
+                                                    return (
+                                                        <li>{item}</li>
+                                                    )
+                                                })
+
+                                            }
+                                        </ul>
+
+                                    </div>
+                                    {
+
+                                        str1 = items[0].steps.split('\n').length,
+                                        console.log('str1 0-8', str1),
+                                        str1 > 0 && str1 < 8 || str1 > 8 ?
+
+                                            <div className="demoPage page">
+                                                <RecipePages props={items} initial={0} count={str1 > 8 ? 8 : str1} end={str1 > 8 ? false : true}></RecipePages>
+                                            </div>
+
+                                            :
+                                            <></>
+                                    }
+                                    {
+                                        str1 = items[0].steps.split('\n').length,
+                                        console.log('str1 8-16', str1),
+                                        (str1 >= 8 && str1 <= 16) || str1 > 16 ?
+                                            <div className="demoPage page">
+                                                <RecipePages props={items} initial={8} count={str1 > 16 ? 16 : str1} end={str1 > 16 ? false : true}></RecipePages>
+                                            </div>
+
+                                            :
+                                            <></>
+                                    }
+                                    {
+                                        str1 = items[0].steps.split('\n').length,
+                                        console.log('str is ', str1),
+                                        (str1 > 16 && str1 <= 24) || str1 > 24 ?
+
+                                            <div className="demoPage page">
+                                                <RecipePages props={items} initial={16} count={str1 > 24 ? 24 : str1} end={str1 > 24 ? false : true}></RecipePages>
+                                            </div>
+
+                                            :
+                                            <></>
+                                    }
+                                    {
+                                        str1 = items[0].steps.split('\n').length,
+                                        console.log('str is ', str1),
+                                        (str1 >= 24 && str1 <= 32) || str1 > 32 ?
+
+                                            <div className="demoPage page">
+                                                <RecipePages props={items} initial={24} count={str1 > 32 ? 32 : str1} end={str1 > 32 ? false : true}></RecipePages>
+                                            </div>
+
+                                            :
+                                            <></>
+                                    }
+
+
+                                </HTMLFlipBook>
+
+
+                            </Modal>
+                            :
+                            <></>
+                    }
+
 
                 </div>
-                {
-                    showbook ?
-                        <Modal
-                            className="myRecipeModal"
-                            style={{ height: "100%" }}
-                            isOpen={showbook}
-                            //onAfterOpen={afterOpenModal}
-                            ariaHideApp={false}
-                            onRequestClose={closeModalTwo}
-                            contentLabel="Example Modal"
-                        >
-                            <button className="waves-btn btn homebtn closebtnModal" onClick={closeModalTwo}>close</button>
-                            <HTMLFlipBook className="recipe" width={400} height={500}>
-                                <div className="demoPage">
-                                    <img src={bookCover} style={{ width: "400px", height: "500px" }}></img>
-                                </div>
-                                <div className="demoPage page recipebookImg">
-                                    <img src={items ? items[0].photo : capture} style={{ width: "100%", height: "60%" }} />
-                                    <h5 className="page-header">{items[0].title}</h5>
-                                </div>
-                                <div className="demoPage page">
-                                    <h5 className="page-header">Ingredients</h5>
-                                    <ul>
-                                        {
-                                            str1 = items[0].Ingredients.split('\n'),
-                                            str1.map((item) => {
-                                                return (
-                                                    <li>{item}</li>
-                                                )
-                                            })
-
-                                        }
-                                    </ul>
-
-                                </div>
-                                {
-
-                                    str1 = items[0].steps.split('\n').length,
-                                    console.log('str1 0-8', str1),
-                                    str1 > 0 && str1 < 8 || str1 > 8 ?
-
-                                        <div className="demoPage page">
-                                            <RecipePages props={items} initial={0} count={str1 > 8 ? 8 : str1} end={str1 > 8 ? false : true}></RecipePages>
-                                        </div>
-
-                                        :
-                                        <></>
-                                }
-                                {
-                                    str1 = items[0].steps.split('\n').length,
-                                    console.log('str1 8-16', str1),
-                                    (str1 >= 8 && str1 <= 16) || str1 > 16 ?
-                                        <div className="demoPage page">
-                                            <RecipePages props={items} initial={8} count={str1 > 16 ? 16 : str1} end={str1 > 16 ? false : true}></RecipePages>
-                                        </div>
-
-                                        :
-                                        <></>
-                                }
-                                {
-                                    str1 = items[0].steps.split('\n').length,
-                                    console.log('str is ', str1),
-                                    (str1 > 16 && str1 <= 24) || str1 > 24 ?
-
-                                        <div className="demoPage page">
-                                            <RecipePages props={items} initial={16} count={str1 > 24 ? 24 : str1} end={str1 > 24 ? false : true}></RecipePages>
-                                        </div>
-
-                                        :
-                                        <></>
-                                }
-                                {
-                                    str1 = items[0].steps.split('\n').length,
-                                    console.log('str is ', str1),
-                                    (str1 >= 24 && str1 <= 32) || str1 > 32 ?
-
-                                        <div className="demoPage page">
-                                            <RecipePages props={items} initial={24} count={str1 > 32 ? 32 : str1} end={str1 > 32 ? false : true}></RecipePages>
-                                        </div>
-
-                                        :
-                                        <></>
-                                }
-
-
-                            </HTMLFlipBook>
-
-
-                        </Modal>
-                        :
-                        <></>
-                }
                 <Footer />
-
-
             </div>
         )
     }
-}
-export default UserSearch
 
+}
+
+export default ViewAll
