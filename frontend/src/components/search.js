@@ -141,6 +141,14 @@ function UserSearch() {
                             setfinarr(finarr => [...finarr, x])
                         }
                     }
+                    else if (localStorage.getItem('linkSearch') == true) {
+                        if (item.title.toLowerCase().includes(searchitem.toLowerCase())) {
+                            if (!finarr.includes(item)) {
+                                var x = [item]
+                                setfinarr(finarr => [...finarr, x])
+                            }
+                        }
+                    }
                     else if (searchitem.indexOf(' ') >= 0) {
                         var subarr = []
                         var splitarr = searchitem.split(' ')

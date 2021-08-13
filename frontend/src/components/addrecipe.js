@@ -5,6 +5,7 @@ import './explore'
 import { Link, useHistory } from 'react-router-dom'
 import './addrecipe.css'
 import logo from './images/logo.png'
+import { ToastContainer, toast } from 'react-toastify';
 
 function Addrecipe() {
     const { state, dispatch } = useContext(UserContext)
@@ -42,6 +43,15 @@ function Addrecipe() {
             }).then(res => res.json())
                 .then(result => {
                     console.log(result)
+                    toast.success('Recipe Added!! :)', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 })
                 .catch(err => {
                     console.log("error ==", err)
@@ -222,7 +232,20 @@ function Addrecipe() {
                             </footer>
 
                         </div>
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                        />
+                        <ToastContainer />
                     </div>
+
                     :
                     <h1>Loading</h1>
             }
