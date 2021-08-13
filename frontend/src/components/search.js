@@ -368,6 +368,9 @@ function UserSearch() {
                                     </Link>
                                 </li>
                                 <li className="nav-item">
+                                    <Link to="/viewAll" className="nav-link">All Recipes</Link>
+                                </li>
+                                <li className="nav-item">
                                     <Link className="nav-link" to="/myprofile">My profile</Link>
                                 </li>
                                 <li className="nav-item">
