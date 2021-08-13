@@ -36,7 +36,7 @@ const RecipePages = (props) => {
             <div className="page-content">
                 <ol>
                     {
-                        str1 = props.props[0].steps.split('\n'),
+                        str1 = props.props.steps.split('\n'),
                         str2 = getElements(str1),
                         str2.map((elem) => {
                             return (
@@ -49,7 +49,6 @@ const RecipePages = (props) => {
 
                     }
                     {
-                        console.log('is end?', props.end),
                         props.end ?
                             <><hr></hr><h3>Voila! You are Done!, I hope You like it :)</h3></>
 
@@ -340,14 +339,14 @@ function ViewAll() {
                 <div className="AllMyRecipe row">
                     {
                         //console.log(finarr),
-                        finarr.length !== 0 || query === '' ?
-                            finarr.map((item) => {
+                        allrecipe.length !== 0 || query === '' ?
+                            allrecipe.map((item) => {
                                 return (
                                     <div className="col-3" style={{ margin: "30px" }}>
                                         <div className="card animaterecipe" style={{ height: "auto", width: "240px" }}>
                                             <div className="card-image">
-                                                <img src={item ? item[0].photo : capture} style={{ height: "90%", width: "100%" }} />
-                                                <b style={{ marginLeft: "10px" }} className="glow card-title">{item[0].title}</b>
+                                                <img src={item ? item.photo : capture} style={{ height: "90%", width: "100%" }} />
+                                                <b style={{ marginLeft: "10px" }} className="glow card-title">{item.title}</b>
                                                 <button onClick={() => { Openrecipe(item) }} data-tip="Let's Cook :),click me to see recipe" className="btn-floating btn letsCook" data-position="bottom" data-tooltip="Lets cook!">
                                                     <Icon icon={womanCookLightSkinTone} height="40px" />
                                                 </button>
@@ -355,30 +354,30 @@ function ViewAll() {
                                             </div>
                                             <div className="card-content" style={{ padding: "10px" }}>
                                                 <div className="row">
-                                                    <p>Preparation time:<span>{item[0].time}</span></p>
+                                                    <p>Preparation time:<span>{item.time}</span></p>
                                                 </div>
                                                 <div className="row">
-                                                    <p>Cuisine type:<span>{item[0].cuisine_type}</span></p>
+                                                    <p>Cuisine type:<span>{item.cuisine_type}</span></p>
                                                 </div>
                                                 <div className="row">
-                                                    <p>Serves:<span>{item[0].serves}</span></p>
+                                                    <p>Serves:<span>{item.serves}</span></p>
                                                 </div>
                                                 <div className="row">
                                                     {
-                                                        item[0].likes.includes(state._id) ?
-                                                            <button className="col-4 btn" style={{ margin: "0% 3%" }} onClick={() => { unlikerecipe(item[0]._id) }}>
+                                                        item.likes.includes(state._id) ?
+                                                            <button className="col-4 btn" style={{ margin: "0% 3%" }} onClick={() => { unlikerecipe(item._id) }}>
                                                                 <i class="fas fa-heart"></i>
-                                                                {item[0].likes.length}
+                                                                {item.likes.length}
                                                             </button>
                                                             :
-                                                            <button className="col-4 btn" style={{ margin: "0% 3%" }} onClick={() => { likerecipe(item[0]._id) }}>
+                                                            <button className="col-4 btn" style={{ margin: "0% 3%" }} onClick={() => { likerecipe(item._id) }}>
                                                                 <i class="far fa-heart"></i>
-                                                                {item[0].likes.length}
+                                                                {item.likes.length}
                                                             </button>
                                                     }
                                                     <button className="col-4 btn" style={{ margin: "0% 3%" }} onClick={openModal}>
                                                         <i class="far fa-comment-alt"></i>
-                                                        {item[0].comments.length}
+                                                        {item.comments.length}
                                                     </button>
 
                                                 </div>
@@ -398,7 +397,7 @@ function ViewAll() {
                                                 {
                                                     console.log('is modal open: ' + items),
                                                     modalIsOpen ?
-                                                        item[0].comments.map(rec => {
+                                                        item.comments.map(rec => {
                                                             return (
                                                                 <h6 key={rec._id}><span style={{ fontWeight: 'bold' }}>{rec.postedby['username']}</span>    {rec.text}</h6>
                                                             )
@@ -410,11 +409,11 @@ function ViewAll() {
                                                 <input className="exploreCommentSearch" type="text" onChange={(e) => { setcomment(e.target.value) }} placeholder="comment here..."></input>
                                                 {comment.length == 0 ? <input className="waves-btn btn" disabled onClick={(e) => {
                                                     e.preventDefault();
-                                                    makecomment(comment, item[0]._id)
+                                                    makecomment(comment, item._id)
                                                 }} type="submit" value="Post" style={{ padding: "0px" }}></input>
                                                     : <input style={{ padding: "0px" }} className="waves-btn btn" onClick={(e) => {
                                                         e.preventDefault();
-                                                        makecomment(comment, item[0]._id)
+                                                        makecomment(comment, item._id)
                                                     }} type="submit" value="Post"></input>
                                                 }
 
@@ -445,14 +444,14 @@ function ViewAll() {
                                         <img src={bookCover} style={{ width: "400px", height: "500px" }}></img>
                                     </div>
                                     <div className="demoPage page recipebookImg">
-                                        <img src={items ? items[0].photo : capture} style={{ width: "100%", height: "60%" }} />
-                                        <h5 className="page-header">{items[0].title}</h5>
+                                        <img src={items ? items.photo : capture} style={{ width: "100%", height: "60%" }} />
+                                        <h5 className="page-header">{items.title}</h5>
                                     </div>
                                     <div className="demoPage page">
                                         <h5 className="page-header">Ingredients</h5>
                                         <ul>
                                             {
-                                                str1 = items[0].Ingredients.split('\n'),
+                                                str1 = items.Ingredients.split('\n'),
                                                 str1.map((item) => {
                                                     return (
                                                         <li>{item}</li>
@@ -465,7 +464,7 @@ function ViewAll() {
                                     </div>
                                     {
 
-                                        str1 = items[0].steps.split('\n').length,
+                                        str1 = items.steps.split('\n').length,
                                         console.log('str1 0-8', str1),
                                         str1 > 0 && str1 < 8 || str1 > 8 ?
 
@@ -477,7 +476,7 @@ function ViewAll() {
                                             <></>
                                     }
                                     {
-                                        str1 = items[0].steps.split('\n').length,
+                                        str1 = items.steps.split('\n').length,
                                         console.log('str1 8-16', str1),
                                         (str1 >= 8 && str1 <= 16) || str1 > 16 ?
                                             <div className="demoPage page">
@@ -488,7 +487,7 @@ function ViewAll() {
                                             <></>
                                     }
                                     {
-                                        str1 = items[0].steps.split('\n').length,
+                                        str1 = items.steps.split('\n').length,
                                         console.log('str is ', str1),
                                         (str1 > 16 && str1 <= 24) || str1 > 24 ?
 
@@ -500,7 +499,7 @@ function ViewAll() {
                                             <></>
                                     }
                                     {
-                                        str1 = items[0].steps.split('\n').length,
+                                        str1 = items.steps.split('\n').length,
                                         console.log('str is ', str1),
                                         (str1 >= 24 && str1 <= 32) || str1 > 32 ?
 
