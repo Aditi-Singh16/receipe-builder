@@ -72,10 +72,11 @@ function Login() {
                         <input type="password" className="form-control" placeholder="password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
                     </div>
                     <button onClick={loginuser} className="form-btn btn waves-effect" >Login</button>
+                    <div>
+                        <p>Don't Have an account? <span><Link to="/Signup">Signup</Link></span></p>
+                    </div>
                 </form>
-                <div>
-                    <p>Don't Have an account? <span><Link to="/Signup">{Signup}</Link></span></p>
-                </div>
+
             </div>
             <ToastContainer
                 position="top-right"

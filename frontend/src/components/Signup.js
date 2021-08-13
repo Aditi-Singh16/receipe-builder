@@ -71,7 +71,7 @@ function Signup() {
                     </div>
                     <button style={{ marginTop: "30%" }} onClick={signupuser} className="form-btn btn waves-effect" >Sign up</button>
                     <div>
-                        <p>Already Have an account?<span><Link to="/login">{Login}</Link></span></p>
+                        <p>Already Have an account?<span><Link to="/login">Login</Link></span></p>
                     </div>
                 </form>
             </div>
