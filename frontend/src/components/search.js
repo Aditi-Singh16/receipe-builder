@@ -582,7 +582,7 @@ function UserSearch() {
                                 {
                                     str1 = items[0].steps.split('\n').length,
                                     console.log('str1 8-16', str1),
-                                    (str1 >= 8 && str1 < 16) || str1 > 16 ?
+                                    (str1 >= 8 && str1 <= 16) || str1 > 16 ?
                                         <div className="demoPage page">
                                             <RecipePages props={items} initial={8} count={str1 > 16 ? 16 : str1} end={str1 > 16 ? false : true}></RecipePages>
                                         </div>
@@ -593,7 +593,7 @@ function UserSearch() {
                                 {
                                     str1 = items[0].steps.split('\n').length,
                                     console.log('str is ', str1),
-                                    (str1 >= 16 && str1 < 24) || str1 > 24 ?
+                                    (str1 > 16 && str1 <= 24) || str1 > 24 ?
 
                                         <div className="demoPage page">
                                             <RecipePages props={items} initial={16} count={str1 > 24 ? 24 : str1} end={str1 > 24 ? false : true}></RecipePages>
@@ -605,7 +605,7 @@ function UserSearch() {
                                 {
                                     str1 = items[0].steps.split('\n').length,
                                     console.log('str is ', str1),
-                                    (str1 >= 24 && str1 < 32) || str1 > 32 ?
+                                    (str1 >= 24 && str1 <= 32) || str1 > 32 ?
 
                                         <div className="demoPage page">
                                             <RecipePages props={items} initial={24} count={str1 > 32 ? 32 : str1} end={str1 > 32 ? false : true}></RecipePages>
