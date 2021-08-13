@@ -7,6 +7,7 @@ import Explore from './components/explore';
 import Profile from './components/myprofile';
 import UserSearch from './components/search'
 import Addrecipe from './components/addrecipe'
+import ViewAll from './components/viewall'
 import { reducer, initialState } from './reducers/userReducer'
 
 
@@ -36,6 +37,7 @@ const Routing = () => {
         <Route exact path="/" component={Home}></Route>
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/Signup" component={Signup}></Route>
+        <Route exact path="/viewAll" component={ViewAll}></Route>
         <Route exact path="/addrecipe" component={Addrecipe}></Route>
         <Route exact path="/explore" component={Explore}></Route>
         <Route exact path="/myprofile" component={Profile}></Route>
