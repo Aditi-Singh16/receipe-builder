@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./login.css"
+import Signup from './Signup';
 
 function Login() {
 
@@ -72,7 +73,9 @@ function Login() {
                     </div>
                     <button onClick={loginuser} className="form-btn btn waves-effect" >Login</button>
                 </form>
-
+                <div>
+                    <p>Don't Have an account? <span><Link to="/Signup">{Signup}</Link></span></p>
+                </div>
             </div>
             <ToastContainer
                 position="top-right"
