@@ -11,7 +11,7 @@ import Login from './login'
 import './search.css'
 import HTMLFlipBook from 'react-pageflip';
 import bookCover from './images/bookCover.png'
-import Footer from './components/footer'
+import Footer from './footer'
 
 const RecipePages = (props) => {
 
