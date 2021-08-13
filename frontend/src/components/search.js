@@ -48,7 +48,7 @@ const RecipePages = (props) => {
 
                     }
                     {
-
+                        console.log('is end?', props.end),
                         props.end ?
                             <><hr></hr><h3>Voila! You are Done!, I hope You like it :)</h3></>
 
@@ -569,6 +569,7 @@ function UserSearch() {
                                 {
 
                                     str1 = items[0].steps.split('\n').length,
+                                    console.log('str1 0-8', str1),
                                     str1 > 0 && str1 < 8 || str1 > 8 ?
 
                                         <div className="demoPage page">
@@ -580,6 +581,7 @@ function UserSearch() {
                                 }
                                 {
                                     str1 = items[0].steps.split('\n').length,
+                                    console.log('str1 8-16', str1),
                                     (str1 >= 8 && str1 < 16) || str1 > 16 ?
                                         <div className="demoPage page">
                                             <RecipePages props={items} initial={8} count={str1 > 16 ? 16 : str1} end={str1 > 16 ? false : true}></RecipePages>
