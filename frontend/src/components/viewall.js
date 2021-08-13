@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import logo from './images/logo.png'
 import { UserContext } from '../App'
@@ -271,6 +271,9 @@ function ViewAll() {
                                         <i className="fas fa-plus-circle"></i>
                                         Add recipe
                                     </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to="/viewAll" className="nav-link">All Recipes</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/myprofile">My profile</Link>

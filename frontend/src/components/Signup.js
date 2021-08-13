@@ -70,7 +70,7 @@ function Signup() {
                         <input type="password" className="form-control" placeholder="password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
                     </div>
                     <button style={{ marginTop: "30%" }} onClick={signupuser} className="form-btn btn waves-effect" >Sign up</button>
-                    <div>
+                    <div style={{ margin: "0px 13%" }}>
                         <p>Already Have an account?<span><Link to="/login">Login</Link></span></p>
                     </div>
                 </form>
